@@ -20,30 +20,31 @@
 *************************** */
 
 window.addEventListener('DOMContentLoaded', () => {
-  //const playerName = prompt('Please Enter Your Name!');
+  let time = 5;
+  let interval = 0;
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
-  });
-  // quizArray QUESTIONS & ANSWERS
-  // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
-  // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
-  //Timer function
-  let time = 5;
-  let interval = setInterval(function () {
+    //Timer function
+   
+    interval = setInterval(function () {
     document.getElementById('time').innerHTML = time;
     time--;
     if (time === 0) {
       clearInterval(interval);
       document.getElementById('time').innerHTML = 'Done';
-      // or...
-      //alert("You're out of time!");
+    
       $("#timeoutpopup").modal("show");
       calculateScore();
       $("#btnSubmit").remove();
     }
   }, 1000);
+  });
+  // quizArray QUESTIONS & ANSWERS
+  // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
+  // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
+  
 
 
   const quizArray = [
@@ -76,6 +77,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // function to Display the quiz questions and answers from the object
   const displayQuiz = () => {
+    
+
+
     const quizWrap = document.querySelector('#quizWrap');
     let quizDisplay = '';
     quizArray.map((quizItem, index) => {
@@ -117,13 +121,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
       }
-
-      let scoreText = 'Your Score is : ' + score;
+      let scorePercent = score/5 *100
+      let scoreText = `Your Score is : ${scorePercent} %` ;
       document.getElementById("quizResult").innerHTML = scoreText;
       // let resultColor = document.querySelector("quizResult")
       // resultColor.style.backgroundColor = 'blue';
     });
-    clearInterval(interval)
+    clearInterval(interval);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
