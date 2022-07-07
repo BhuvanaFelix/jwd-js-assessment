@@ -1,8 +1,15 @@
 .card-body{
 
-    background-color: rgb(222, 140, 197);
+    background-color:#fec400;;
 }
 .bg-img{
     background-image: url(quizQuestImg.jpg);
     opacity: 80%;
 }
+.bgquiz-img{
+    background-image: url(quizImg.jpg);
+   
+}
+img{
+    width: 100%;
+} 

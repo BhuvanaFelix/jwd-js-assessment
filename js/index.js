@@ -20,31 +20,30 @@
 *************************** */
 
 window.addEventListener('DOMContentLoaded', () => {
-  let time = 5;
+  let time = 20;
   let interval = 0;
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
     //Timer function
-   
     interval = setInterval(function () {
-    document.getElementById('time').innerHTML = time;
-    time--;
-    if (time === 0) {
-      clearInterval(interval);
-      document.getElementById('time').innerHTML = 'Done';
-    
-      $("#timeoutpopup").modal("show");
-      calculateScore();
-      $("#btnSubmit").remove();
-    }
-  }, 1000);
+      document.getElementById('time').innerHTML = time;
+      time--;
+      if (time === 0) {
+        clearInterval(interval);
+        document.getElementById('time').innerHTML = 'Done';
+
+        $("#timeoutpopup").modal("show");
+        calculateScore();
+        $("#btnSubmit").remove();
+      }
+    }, 1000);
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
-  
+
 
 
   const quizArray = [
@@ -77,9 +76,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // function to Display the quiz questions and answers from the object
   const displayQuiz = () => {
-    
-
-
     const quizWrap = document.querySelector('#quizWrap');
     let quizDisplay = '';
     quizArray.map((quizItem, index) => {
@@ -121,24 +117,29 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
       }
-      let scorePercent = score/5 *100
-      let scoreText = `Your Score is : ${scorePercent} %` ;
+      //convert score to percentage.
+      let scorePercent = score / 5 * 100
+      let scoreText ='';
+      if (scorePercent == 100){
+        scoreText = "Congrats you scored 100%"
+      }else{
+       scoreText = `Your Score is : ${scorePercent} %`;
+      }
       document.getElementById("quizResult").innerHTML = scoreText;
-      // let resultColor = document.querySelector("quizResult")
-      // resultColor.style.backgroundColor = 'blue';
     });
-    clearInterval(interval);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    clearInterval(interval); //clear timer
+    window.scrollTo({ top: 0, behavior: 'smooth' }); //scroll to top to view result
   };
 
 
   // call the displayQuiz function
   displayQuiz();
+  //button submit eventListener 
   const quizSubmit = document.getElementById("btnSubmit");
 
   quizSubmit.addEventListener('click', function (e) {
-    calculateScore();
-    
+    calculateScore(); //calling score function for results
+
   })
 });
 
@@ -147,7 +148,7 @@ let fullReset = document.getElementById('btnReset');
 
 fullReset.addEventListener('click', function (e) {
   location.reload();
-  
+
 }, false);
 
 
