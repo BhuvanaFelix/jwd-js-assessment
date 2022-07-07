@@ -119,11 +119,11 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       //convert score to percentage.
       let scorePercent = score / 5 * 100
-      let scoreText ='';
-      if (scorePercent == 100){
+      let scoreText = '';
+      if (scorePercent == 100) {
         scoreText = "Congrats you scored 100%"
-      }else{
-       scoreText = `Your Score is : ${scorePercent} %`;
+      } else {
+        scoreText = `Your Score is : ${scorePercent} %`;
       }
       document.getElementById("quizResult").innerHTML = scoreText;
     });
