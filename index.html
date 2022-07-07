@@ -32,7 +32,8 @@
       <div class="mb-5">
         <h2>Test your knowledge</h2>
         - Time remaining <span id="time">01:00</span>
-      </div>
+        </div>
+        <div><h1 id="quizResult"></h1></div>
       <div id="quizWrap"></div>
 
       <div>
@@ -43,6 +44,23 @@
           Reset Quiz
         </button>
         <span id="score"></span>
+      </div>
+    </div>
+    <!--Final timeout modal-->
+    <div class="modal" id = "timeoutpopup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Time Out</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Oops times up!!!</p>
+          </div>
+          
+        </div>
       </div>
     </div>
 

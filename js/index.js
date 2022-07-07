@@ -20,6 +20,7 @@
 *************************** */
 
 window.addEventListener('DOMContentLoaded', () => {
+  //const playerName = prompt('Please Enter Your Name!');
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
@@ -28,6 +29,23 @@ window.addEventListener('DOMContentLoaded', () => {
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
+  //Timer function
+  let time = 5;
+  let interval = setInterval(function () {
+    document.getElementById('time').innerHTML = time;
+    time--;
+    if (time === 0) {
+      clearInterval(interval);
+      document.getElementById('time').innerHTML = 'Done';
+      // or...
+      //alert("You're out of time!");
+      $("#timeoutpopup").modal("show");
+      calculateScore();
+      $("#btnSubmit").remove();
+    }
+  }, 1000);
+
+
   const quizArray = [
     {
       q: 'Which is the third planet from the sun?',
@@ -44,6 +62,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'Earth is protected from uv radioaction by',
+      o: ['Ozone', 'Oxygen', 'Carbon Dioxide', 'Trees'],
+      a: 0,
+    },
+    {
+      q: 'Which is the largest country by population',
+      o: ['Mexico', 'US', 'India', 'China'],
+      a: 3,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -59,6 +87,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     <li class="list-group-item"  id="li_${index}_3"><input type="radio" name="radio${index}" id="radio_${index}_3"> ${quizItem.o[3]}</li>
                     </ul>
                     <div>&nbsp;</div>`;
+
+
       quizWrap.innerHTML = quizDisplay;
     });
   };
@@ -76,15 +106,45 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = 'green';
+        } else if (radioElement.checked) {
+          liElement.style.backgroundColor = 'red';
         }
 
-        if (radioElement.checked) {
+        if (radioElement.checked && quizItem.a == i) {
           // code for task 1 goes here
+          score++;
         }
+
       }
+
+      let scoreText = 'Your Score is : ' + score;
+      document.getElementById("quizResult").innerHTML = scoreText;
+      // let resultColor = document.querySelector("quizResult")
+      // resultColor.style.backgroundColor = 'blue';
     });
+    clearInterval(interval)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
 
   // call the displayQuiz function
   displayQuiz();
+  const quizSubmit = document.getElementById("btnSubmit");
+
+  quizSubmit.addEventListener('click', function (e) {
+    calculateScore();
+    
+  })
 });
+
+//Function for reset button to reload the page.
+let fullReset = document.getElementById('btnReset');
+
+fullReset.addEventListener('click', function (e) {
+  location.reload();
+  
+}, false);
+
+
+
