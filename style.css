@@ -1,0 +1,8 @@
+.card-body{
+
+    background-color: rgb(222, 140, 197);
+}
+.bg-img{
+    background-image: url(quizQuestImg.jpg);
+    opacity: 80%;
+}
