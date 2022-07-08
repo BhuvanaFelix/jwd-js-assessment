@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('time').innerHTML = time;
       time--;
       if (time === 0) {
-        clearInterval(interval);
+        //clearInterval(interval);
         document.getElementById('time').innerHTML = 'Done';
 
         $("#timeoutpopup").modal("show");
@@ -119,7 +119,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       //convert score to percentage.
       let scorePercent = score / 5 * 100
-      let scoreText = '';
+      let scoreText;
       if (scorePercent == 100) {
         scoreText = "Congrats you scored 100%"
       } else {
@@ -149,7 +149,7 @@ let fullReset = document.getElementById('btnReset');
 fullReset.addEventListener('click', function (e) {
   location.reload();
 
-}, false);
+},false);
 
 
 
