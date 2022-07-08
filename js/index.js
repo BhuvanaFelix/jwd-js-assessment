@@ -20,7 +20,7 @@
 *************************** */
 
 window.addEventListener('DOMContentLoaded', () => {
-  let time = 20;
+  let time = 60;
   let interval = 0;
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
